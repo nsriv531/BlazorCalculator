@@ -30,21 +30,3 @@ BlazorCalculator/
 ├─ Calculator.Web/              # Blazor WebAssembly UI
 └─ .github/workflows/dotnet.yml # CI
 ```
-
-## What to Look For (Recruiter Notes)
-
-- Separation of concerns: UI layer is thin; business logic is tested in isolation.
-- Clean components: `Calculator.razor` composes small `CalcButton` components.
-- Accessibility: semantic buttons, labels, focus outlines, keyboard input.
-- Robustness: input validation, division-by-zero guard, `C`/`AC` behavior.
-- Maintainability: editorconfig, gitignore, unit tests, CI.
-
-## Deploy
-
-You can publish to static hosting (e.g., GitHub Pages, Netlify, Vercel):
-
-```bash
-dotnet publish Calculator.Web -c Release -o publish
-```
-
-Serve the `publish/wwwroot` folder with any static server.
