@@ -1,0 +1,43 @@
+@using Calculator.Engine
+
+<div class="calculator" role="group" aria-label="Calculator keys">
+  <input class="display" aria-label="Display" value="@Display" readonly />
+
+  <div class="grid">
+    <CalcButton Text="AC" Title="All Clear" OnClick="OnAllClear" Variant="secondary" />
+    <CalcButton Text="C" Title="Clear Entry" OnClick="OnClear" Variant="secondary" />
+    <CalcButton Text="+/-" Title="Toggle sign" OnClick="OnToggleSign" Variant="secondary" />
+    <CalcButton Text="%" Title="Percent" OnClick="() => OnOp?.Invoke(Operation.Percent)" Variant="accent" />
+
+    <CalcButton Text="7" OnClick="() => OnDigit?.Invoke('7')" />
+    <CalcButton Text="8" OnClick="() => OnDigit?.Invoke('8')" />
+    <CalcButton Text="9" OnClick="() => OnDigit?.Invoke('9')" />
+    <CalcButton Text="÷" Title="Divide" OnClick="() => OnOp?.Invoke(Operation.Divide)" Variant="accent" />
+
+    <CalcButton Text="4" OnClick="() => OnDigit?.Invoke('4')" />
+    <CalcButton Text="5" OnClick="() => OnDigit?.Invoke('5')" />
+    <CalcButton Text="6" OnClick="() => OnDigit?.Invoke('6')" />
+    <CalcButton Text="×" Title="Multiply" OnClick="() => OnOp?.Invoke(Operation.Multiply)" Variant="accent" />
+
+    <CalcButton Text="1" OnClick="() => OnDigit?.Invoke('1')" />
+    <CalcButton Text="2" OnClick="() => OnDigit?.Invoke('2')" />
+    <CalcButton Text="3" OnClick="() => OnDigit?.Invoke('3')" />
+    <CalcButton Text="−" Title="Subtract" OnClick="() => OnOp?.Invoke(Operation.Subtract)" Variant="accent" />
+
+    <CalcButton Text="0" OnClick="() => OnDigit?.Invoke('0')" class="zero" />
+    <CalcButton Text="." OnClick="OnDecimal" />
+    <CalcButton Text="+" Title="Add" OnClick="() => OnOp?.Invoke(Operation.Add)" Variant="accent" />
+    <CalcButton Text="=" Title="Equals" OnClick="OnEquals" Variant="primary" />
+  </div>
+</div>
+
+@code {
+  [Parameter] public string Display { get; set; } = "0";
+  [Parameter] public Action<char>? OnDigit { get; set; }
+  [Parameter] public Action? OnDecimal { get; set; }
+  [Parameter] public Action<Operation>? OnOp { get; set; }
+  [Parameter] public Action? OnEquals { get; set; }
+  [Parameter] public Action? OnClear { get; set; }
+  [Parameter] public Action? OnAllClear { get; set; }
+  [Parameter] public Action? OnToggleSign { get; set; }
+}

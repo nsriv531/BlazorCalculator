@@ -1,0 +1,2 @@
+.calc-wrapper{outline:2px dashed transparent}
+.calc-wrapper:focus{outline-color:#93c5fd;outline-offset:6px;border-radius:12px}

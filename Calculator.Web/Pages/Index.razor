@@ -1,0 +1,50 @@
+@page "/"
+@using Calculator.Engine
+<PageTitle>Calculator</PageTitle>
+
+<div class="calc-wrapper" @onkeydown="HandleKeyDown" tabindex="0" aria-label="Calculator">
+  <Calculator Display="@engine.Display"
+              OnDigit="HandleDigit"
+              OnDecimal="HandleDecimal"
+              OnOp="HandleOperation"
+              OnEquals="HandleEquals"
+              OnClear="HandleClear"
+              OnAllClear="HandleAllClear"
+              OnToggleSign="HandleToggleSign" />
+</div>
+
+@code {
+  private CalculatorEngine engine = new();
+
+  private void HandleDigit(char c) => engine.InputDigit(c);
+  private void HandleDecimal() => engine.InputDigit('.');
+  private void HandleOperation(Operation op) => engine.SetOperation(op);
+  private void HandleEquals() => engine.Equals();
+  private void HandleClear() => engine.ClearEntry();
+  private void HandleAllClear() => engine.AllClear();
+  private void HandleToggleSign() => engine.ToggleSign();
+
+  private void HandleKeyDown(KeyboardEventArgs e)
+  {
+      if (string.IsNullOrEmpty(e.Key)) return;
+      switch (e.Key)
+      {
+          case "0": case "1": case "2": case "3": case "4":
+          case "5": case "6": case "7": case "8": case "9":
+              engine.InputDigit(e.Key[0]); break;
+          case ".":
+          case "Decimal":
+              engine.InputDigit('.'); break;
+          case "+": HandleOperation(Operation.Add); break;
+          case "-": HandleOperation(Operation.Subtract); break;
+          case "*": HandleOperation(Operation.Multiply); break;
+          case "/": HandleOperation(Operation.Divide); break;
+          case "%": HandleOperation(Operation.Percent); break;
+          case "Enter":
+          case "=":
+              HandleEquals(); break;
+          case "Escape": HandleAllClear(); break;
+          case "Backspace": HandleClear(); break;
+      }
+  }
+}

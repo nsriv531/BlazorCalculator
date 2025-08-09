@@ -1,0 +1,21 @@
+<button class="calc @VariantCss @AdditionalCss" title="@Title" @onclick="OnClick">
+  @Text
+</button>
+
+@code {
+  [Parameter] public string Text { get; set; } = "";
+  [Parameter] public string Title { get; set; } = "";
+  [Parameter] public EventCallback OnClick { get; set; }
+  [Parameter] public string Variant { get; set; } = ""; // primary | accent | secondary
+  [Parameter] public string? @class { get; set; } // allow extra classes
+
+  private string VariantCss => Variant switch
+  {
+      "primary" => "primary",
+      "accent" => "accent",
+      "secondary" => "secondary",
+      _ => ""
+  };
+
+  private string AdditionalCss => @class ?? "";
+}
