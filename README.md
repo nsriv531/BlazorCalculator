@@ -1,6 +1,6 @@
 # Blazor Calculator
 
-A clean, recruiter-friendly Blazor WebAssembly app that demonstrates:
+A clean, Blazor WebAssembly app that demonstrates:
 
 - Component-based UI with isolated CSS (`.razor.css`)
 - State management via a reusable `CalculatorEngine` class library
